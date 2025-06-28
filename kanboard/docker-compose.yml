@@ -1,0 +1,20 @@
+name: kanboard
+services:
+  app:
+    image: ${KANBOARD_IMAGE:-kanboard/kanboard:latest}
+    container_name: kanboard
+    restart: unless-stopped
+    ports:
+     - "8600:80"
+     - "4430:443"
+    volumes:
+     - data:/var/www/app/data
+     - plugins:/var/www/app/plugins
+     - certs:/etc/nginx/ssl
+volumes:
+  data:
+    driver: local
+  plugins:
+    driver: local
+  certs:
+    driver: local
